@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensors-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sensors
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sensors
+    spec:
+      containers:
+        - name: sensors
+          image: registry.digitalocean.com/kevincolyar/latest
+          ports:
+            - containerPort: 8000
+      restartPolicy: Always
+status: {}

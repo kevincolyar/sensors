@@ -13,7 +13,11 @@
 - [X] Routes - GET /errors
 - [X] Routes - DELETE /errors
 
-## v0.3.x
+## v0.3.x - Deployment
+- [X] Deployment - k8
+- [X] Deployment - digitalocean
+
+## v0.4.x
 - [ ] POST temp
 - [ ] Parse data
 - [ ] Response - {'overtemp': False}
@@ -25,13 +29,13 @@
 - [ ] Validation - temperature - float64
 - [ ] Validation - temperature - negative
 
-## v0.4.x
+## v0.5.x
 - [ ] Testing
 - [ ] Testing - Unit tests
 - [ ] Testing - REST client
 - [ ] Testing - Bad type conversion
 
-## v0.5.x
+## v0.6.x
 - [ ] Persistence - schema
 - [ ] Persistence - indices
 - [ ] Persistence - measurements
@@ -45,10 +49,6 @@
     + method
     + payload
     + sort by timestamp
-
-## v0.x.x - Deployment
-- [ ] Deployment - digitalocean
-- [ ] Deployment - k8
 
 ## v0.6.x
 - [ ] Documentation

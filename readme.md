@@ -4,6 +4,10 @@
 
 ## Deployment
 
+    docker build . --tag latest
+    docker tag latest registry.digitalocean.com/kevincolyar/latest 
+    docker push registry.digitalocean.com/kevincolyar/latest
+
 ## Testing
 
     docker compose run api pytest
