@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import responses
 import db.postgres.client
 
 def init_db():

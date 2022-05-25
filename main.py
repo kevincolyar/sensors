@@ -7,11 +7,11 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List
 
-import commands
-import responses
-from exception_formatter import format_exception
-from pipeline import augment_state, parse_data
+import sensors.commands
+import sensors.responses
+import sensors.util
 
+from exception_formatter import format_exception
 
 # Initialization
 # -----------------------------------------------------------------------------
@@ -19,7 +19,7 @@ dotenv.load_dotenv()
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
-db = commands.init_db()
+db = sensors.commands.init_db()
 
 # Request Body
 # -----------------------------------------------------------------------------
@@ -49,17 +49,17 @@ async def measurement(measurement: Measurement, request: Request):
     """
     logger.debug("POST /measurement")
     try:
-        state = parse_data(measurement.data)
-        state = augment_state(state)
+        state = sensors.util.parse_data(measurement.data)
+        state = sensors.util.augment_state(state)
 
-        commands.save_measurement(db, state)
+        sensors.commands.save_measurement(db, state)
 
-        return responses.dispatch(state['measurement'])(state)
+        return sensors.responses.dispatch(state['measurement'])(state)
 
     except:
        logger.fatal(format_exception())
 
-       commands.save_error(db, request.url._url, 'POST', measurement.data)
+       sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)
 
        return JSONResponse(
            status_code=400,
@@ -72,7 +72,7 @@ async def get_errors():
     Returns all data strings which have not been in the correct format.
     """
     logger.debug("GET /errors")
-    return commands.get_errors(db)
+    return sensors.commands.get_errors(db)
 
 @app.delete("/errors")
 async def delete_errors():
@@ -80,5 +80,5 @@ async def delete_errors():
     Clears the error history.
     """
     logger.debug("DELETE /errors")
-    commands.destroy_errors(db)
+    sensors.commands.destroy_errors(db)
     return 'Errors cleared'

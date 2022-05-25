@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import pytest
-from pipeline import parse_data, augment_state
+from sensors.util import parse_data, augment_state
 
 def test_parse_data():
     assert parse_data(
