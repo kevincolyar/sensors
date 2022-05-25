@@ -29,5 +29,5 @@ def save_error(db, route, method, err):
     db.execute("CALL errors_insert('{}', '{}', '{}')".format(
         route,
         method,
-        err.replace("'", "''")[0:255] # Escape single quote and limit length to 255
+        (err or '').replace("'", "''")[0:255] # Escape single quote and limit length to 255
     ))

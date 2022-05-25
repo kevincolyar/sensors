@@ -24,7 +24,7 @@ db = sensors.commands.init_db()
 # Types
 # -----------------------------------------------------------------------------
 class MeasurementRequest(BaseModel):
-    data: str
+    data: str = None
 
 class MeasurementResponse(BaseModel):
     overtemp: bool

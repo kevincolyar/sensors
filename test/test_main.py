@@ -83,3 +83,24 @@ def test_post_temp_overflow_payload():
 
     assert response.status_code == 400
     assert response.json() == {'error': 'bad request'}
+
+def test_post_temp_data_blank():
+    client.delete('/v1/errors')
+    response = client.post("/v1/temp", json={ "data": ""})
+
+    assert response.status_code == 400
+    assert response.json() == {'error': 'bad request'}
+
+def test_post_temp_data_none():
+    client.delete('/v1/errors')
+    response = client.post("/v1/temp", json={ "data": None})
+
+    assert response.status_code == 400
+    assert response.json() == {'error': 'bad request'}
+
+def test_post_temp_payload_empty():
+    client.delete('/v1/errors')
+    response = client.post("/v1/temp", json={ "data": None})
+
+    assert response.status_code == 400
+    assert response.json() == {'error': 'bad request'}

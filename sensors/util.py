@@ -10,6 +10,9 @@ def parse_data(data, delim=':'):
       - `__type__` is the measurement type (string)
       - `__value__` is the value (float64)
     """
+    if data == None:
+        raise ValueError("data is None")
+
     split = data.split(delim)
 
     if len(split) != 4:
@@ -47,4 +50,3 @@ def augment_state(state, fmt='%Y/%m/%d %H:%M:%S'):
     state['formatted_time'] = t.strftime(fmt)
 
     return state
-
