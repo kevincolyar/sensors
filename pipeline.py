@@ -5,8 +5,6 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# __cached_parse_data_regex = re.compile(r'^\d+{device}:\d+{epoch}:\w+{measurement}:\d+{value}')
-
 def parse_data(data, delim=':'):
     split = data.split(delim)
 
@@ -14,7 +12,7 @@ def parse_data(data, delim=':'):
         raise Exception("Wrong number of fields")
 
     # Use np.uint32 to raise any type errors.
-    # This would be easier in rust.
+    # Don't like this; Would be easier in Rust.
     device_id   = int(np.uint32(split[0]))
     epoch_ms    = int(np.uint64(split[1]))
     measurement = split[2].strip(' \'\"')
@@ -35,12 +33,3 @@ def augment_state(state, fmt='%Y/%m/%d %H:%M:%S'):
 
     return state
 
-def temp_response(state, threshold=90):
-    if state['value'] >= threshold:
-        return {
-            'overtemp': True,
-            'device_id': state['device_id'],
-            'formatted_time': state['formatted_time']
-        }
-    else:
-        return {'overtemp': False}

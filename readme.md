@@ -1,6 +1,14 @@
-# Title 
+# Sensors
+
+## What to Know
+
+## API Documentation
+
+    http://sensors.kevin.colyar.net/docs
 
 ## Development
+
+    http://localhost:3001/
 
 ## Deployment
 
@@ -10,7 +18,26 @@
 
 ## Testing
 
+### Test Suite
+
     docker compose run api pytest
+    
+### Command Line
+
+    curl -X "DELETE" http://localhost:3001/errors
+
+    curl -X POST -H "Content-Type: application/json" \
+    -d '{"data": "365951380:1640995229697:'Temperature':58.48256793121914"}' \
+    http://localhost:3001/temp
+
+    curl -X POST -H "Content-Type: application/json" \
+    -d '{"data": "365951380:1640995229697:'Temperature':90.0"}' \
+    http://localhost:3001/temp
+
+    curl -X POST -H "Content-Type: application/json" \
+    -d '{"data": ":1640995229697:'Temperature':90.0"}' \
+    http://localhost:3001/temp
+
 
 ## Questions
 

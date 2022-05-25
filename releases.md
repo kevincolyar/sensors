@@ -16,6 +16,7 @@
 ## v0.3.x - Deployment
 - [X] Deployment - k8
 - [X] Deployment - digitalocean
+- [X] Deployment - dns - sensors.kevin.colyar.net
 
 ## v0.4.x
 - [X] POST temp
@@ -30,20 +31,20 @@
 - [ ] Validation - temperature - negative
 
 ## v0.5.x
-- [ ] Testing
-- [ ] Testing - Unit tests
-- [ ] Testing - REST client
-- [ ] Testing - Bad type conversion
+- [X] Testing - Setup
+- [X] Testing - Unit tests
+- [X] Testing - REST client
+- [ ] Testing - Bad type conversions
 
 ## v0.6.x
-- [ ] Persistence - schema
-- [ ] Persistence - indices
-- [ ] Persistence - measurements
-    + t
+- [X] Persistence - schema
+- [X] Persistence - stored procedures
+- [X] Persistence - measurements
+    + created_at
     + measurement/type
     + device_id 
     + value 
-- [ ] Persistence - errors
+- [X] Persistence - errors
     + timestamp
     + route
     + method
@@ -57,13 +58,23 @@ https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
 - [ ] Documentation - API
   + https://fastapi.tiangolo.com/deployment/docker/#interactive-api-docs
 
-## v1.1.x - Measurement persistance
+## v1.1.x
+- [ ] Linting
+- [ ] Coverage
+
+## v1.1.x
 - [ ] Tagged/Doc store?
 
-## v1.2.x - Measurement persistance
+## v1.2.x
 - [ ] API versioning
     https://christophergs.com/tutorials/ultimate-fastapi-tutorial-pt-8-project-structure-api-versioning/
 
 ## v1.2.x
 - [ ] Lets Encrypt
 - [ ] Kafka
+
+## v1.3.x
+- [ ] Persistence - test/staging db
+- [ ] Persistence - indices
+- [ ] Persistence - measurements - upsert
+- [ ] Persistence - errors - save stack trace

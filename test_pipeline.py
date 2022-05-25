@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import pytest
-from pipeline import parse_data, temp_response, augment_state
+from pipeline import parse_data, augment_state
 
 def test_parse_data():
     assert parse_data(
@@ -41,20 +41,4 @@ def test_augment_data():
     }) == {
         'epoch_ms': 1653428445377,
         'formatted_time': '2022/05/24 21:40:45'
-    }
-
-def test_temp_response_overtemp_false():
-    assert temp_response({'value': 89}) == {
-        'overtemp': False
-    }
-
-def test_temp_response_overtemp_true():
-    assert temp_response({
-        'device_id': 1,
-        'formatted_time': '2022/5/22/24 14:27:10',
-        'value': 90
-    }) == {
-        'overtemp': True,
-        'device_id': 1,
-        'formatted_time': '2022/5/22/24 14:27:10'
     }

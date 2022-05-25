@@ -1,8 +1,5 @@
-anyio==3.6.1
-asgiref==3.5.2
-astroid==2.5
-attrs==21.4.0
-autoflake==0.6.6
-certifi==2022.5.18.1
-charset-normalizer==2.0.12
 fastapi==0.78.0
+uvicorn==0.17.6
+numpy==1.22.4
+psycopg2==2.9.3
+python-dotenv==0.20.0
