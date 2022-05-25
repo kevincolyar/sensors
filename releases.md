@@ -16,6 +16,9 @@
 ## v0.3.x - Deployment
 - [X] Deployment - k8
 - [X] Deployment - digitalocean
+- [X] Deployment - update pods after image push
+  + https://stackoverflow.com/questions/33112789/how-do-i-force-kubernetes-to-re-pull-an-image
+  + kubectl rollout restart deployments sensors-deploy
 - [X] Deployment - dns - sensors.kevin.colyar.net
 
 ## v0.4.x
@@ -52,13 +55,13 @@
     + sort by timestamp
 
 ## v0.6.x
-- [ ] Documentation
+- [X] Documentation
 https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
-- [ ] Documentation
-- [ ] Documentation - API
+- [X] Documentation - API
   + https://fastapi.tiangolo.com/deployment/docker/#interactive-api-docs
 
 ## v1.1.x
+- [ ] Push to github
 - [ ] Linting
 - [ ] Coverage
 
@@ -72,6 +75,7 @@ https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
 ## v1.2.x
 - [ ] Lets Encrypt
 - [ ] Kafka
+- [ ] Authentication - JWT
 
 ## v1.3.x
 - [ ] Persistence - test/staging db

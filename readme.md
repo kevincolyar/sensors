@@ -12,9 +12,7 @@
 
 ## Deployment
 
-    docker build . --tag latest
-    docker tag latest registry.digitalocean.com/kevincolyar-sensors/latest
-    docker push registry.digitalocean.com/kevincolyar-sensors/latest
+    ./bin/deploy.sh
 
 ## Testing
 
