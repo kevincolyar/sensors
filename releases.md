@@ -28,16 +28,16 @@
 - [X] Response - Error handling - Overtemp
 - [X] Response - Error handling
 - [X] Response - Format timestamp
-- [ ] Validation - device id - int32
-- [ ] Validation - epoch_ms - int64
-- [ ] Validation - temperature - float64
-- [ ] Validation - temperature - negative
+- [X] Validation - device id - int32
+- [X] Validation - epoch_ms - int64
+- [X] Validation - temperature - float64
+- [X] Validation - temperature - negative
 
 ## v0.5.x
 - [X] Testing - Setup
 - [X] Testing - Unit tests
 - [X] Testing - REST client
-- [ ] Testing - Bad type conversions
+- [X] Testing - Bad type conversions
 
 ## v0.6.x
 - [X] Persistence - schema
@@ -60,10 +60,15 @@ https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
 - [X] Documentation - API
   + https://fastapi.tiangolo.com/deployment/docker/#interactive-api-docs
 
-## v1.1.x
+## v1.0.0
 - [ ] Push to github
+- [ ] Make github project public
+- [ ] Archive project
+- [ ] Email project
+
+## v1.1.x
 - [ ] Linting
-- [ ] Coverage
+- [X] Coverage
 
 ## v1.1.x
 - [ ] Tagged/Doc store?

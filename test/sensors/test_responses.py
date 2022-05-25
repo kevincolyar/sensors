@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-from sensors.responses import temperature
+
+import pytest
+
+from sensors.responses import dispatch, temperature
+
+def test_dispatch():
+    assert dispatch('Temperature')  == temperature
+
+def test_dispatch_fail():
+    with pytest.raises(KeyError):
+        assert dispatch('Temp')
 
 def test_temperature_overtemp_false():
     assert temperature({'value': 89}) == {

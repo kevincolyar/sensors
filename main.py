@@ -56,7 +56,7 @@ async def measurement(measurement: Measurement, request: Request):
 
         return sensors.responses.dispatch(state['measurement'])(state)
 
-    except:
+    except (ValueError, KeyError):
        logger.fatal(format_exception())
 
        sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)

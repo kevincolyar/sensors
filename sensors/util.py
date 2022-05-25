@@ -13,14 +13,23 @@ def parse_data(data, delim=':'):
     split = data.split(delim)
 
     if len(split) != 4:
-        raise Exception("Wrong number of fields")
+        raise ValueError("Wrong number of fields")
 
-    # Use np.uint32 to raise any type errors.
-    # Don't like this; Would be easier in Rust.
-    device_id   = int(np.uint32(split[0]))
-    epoch_ms    = int(np.uint64(split[1]))
+    device_id   = int(split[0])
+    epoch_ms    = int(split[1])
     measurement = split[2].strip(' \'\"')
-    value       = float(np.float64(split[3]))
+    value       = float(split[3])
+
+    # Use numpy to raise any type errors.
+    # Don't like this; Would be easier in Rust.
+    if device_id != np.uint32(device_id):
+        raise ValueError("device_id is not uint32")
+
+    if epoch_ms != np.uint64(epoch_ms):
+        raise ValueError("epoch_ms is not uint64")
+
+    if value != np.float64(value):
+        raise ValueError("value is not float64")
 
     return {
         'device_id':   device_id,

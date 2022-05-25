@@ -20,6 +20,14 @@
 
     docker compose run api pytest
     
+### Test Coverage
+
+    docker compose exec api coverage run -m pytest
+    docker compose exec api coverage report -m
+    docker compose exec api coverage html
+
+    open htmlcov/index.html
+    
 ### Command Line
 
     curl -X "DELETE" http://localhost:3001/errors
