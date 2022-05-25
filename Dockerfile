@@ -23,8 +23,8 @@ WORKDIR ${APP_HOME}
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# COPY dev_requirements.txt .
-# RUN pip install -r dev_requirements.txt
+COPY dev_requirements.txt .
+RUN pip install -r dev_requirements.txt
 
 # Change user
 USER ${APP_USER}

@@ -18,12 +18,12 @@
 - [X] Deployment - digitalocean
 
 ## v0.4.x
-- [ ] POST temp
-- [ ] Parse data
-- [ ] Response - {'overtemp': False}
-- [ ] Response - Error handling - Overtemp
-- [ ] Response - Error handling
-- [ ] Response - Format timestamp
+- [X] POST temp
+- [X] Parse data
+- [X] Response - {'overtemp': False}
+- [X] Response - Error handling - Overtemp
+- [X] Response - Error handling
+- [X] Response - Format timestamp
 - [ ] Validation - device id - int32
 - [ ] Validation - epoch_ms - int64
 - [ ] Validation - temperature - float64
