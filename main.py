@@ -64,14 +64,14 @@ async def measurement(
         return sensors.responses.dispatch(state['measurement'])(state)
 
     except (ValueError, KeyError):
-       logger.error(exception_formatter.format())
+        logger.error(exception_formatter.format())
 
-       sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)
+        sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)
 
-       return JSONResponse(
-           status_code=400,
-           content={'error': 'bad request'}
-       )
+        return JSONResponse(
+            status_code=400,
+            content={'error': 'bad request'}
+        )
 
 @version(1)
 @app.get("/errors", response_model=List[str])

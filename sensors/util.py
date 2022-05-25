@@ -10,7 +10,7 @@ def parse_data(data, delim=':'):
       - `__type__` is the measurement type (string)
       - `__value__` is the value (float64)
     """
-    if data == None:
+    if data is None:
         raise ValueError("data is None")
 
     split = data.split(delim)

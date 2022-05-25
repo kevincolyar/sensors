@@ -18,5 +18,5 @@ def temperature(state, threshold=90):
             'device_id': state['device_id'],
             'formatted_time': state['formatted_time']
         }
-    else:
-        return {'overtemp': False}
+
+    return {'overtemp': False}

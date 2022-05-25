@@ -13,7 +13,7 @@ def init_db():
     )
 
 def get_errors(db):
-    return [ fields[0] for fields in db.select("SELECT payload FROM errors") ]
+    return [fields[0] for fields in db.select("SELECT payload FROM errors")]
 
 def destroy_errors(db):
     db.execute('DELETE from errors')
