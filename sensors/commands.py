@@ -26,4 +26,8 @@ def save_measurement(db, state):
     ))
 
 def save_error(db, route, method, err):
-    db.execute("CALL errors_insert('{}', '{}', '{}')".format(route, method, err.replace("'", "''")))
+    db.execute("CALL errors_insert('{}', '{}', '{}')".format(
+        route,
+        method,
+        err.replace("'", "''")[0:255] # Escape single quote and limit length to 255
+    ))

@@ -37,6 +37,7 @@
 - [X] Testing - Unit tests
 - [X] Testing - REST client
 - [X] Testing - Bad type conversions
+- [X] Testing - payload larger than VARCHAR 255
 
 ## v0.6.x
 - [X] Persistence - schema

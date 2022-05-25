@@ -8,11 +8,10 @@ from fastapi_versioning import VersionedFastAPI, version
 from pydantic import BaseModel
 from typing import List
 
+import exception_formatter
 import sensors.commands
 import sensors.responses
 import sensors.util
-
-from exception_formatter import format_exception
 
 # Initialization
 # -----------------------------------------------------------------------------
@@ -22,18 +21,25 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 db = sensors.commands.init_db()
 
-# Request Body
+# Types
 # -----------------------------------------------------------------------------
-class Measurement(BaseModel):
+class MeasurementRequest(BaseModel):
     data: str
+
+class MeasurementResponse(BaseModel):
+    overtemp: bool
+    device_id: int
+    formatted_time: str # TODO: provide format %Y/%m/%d %H:%M:%S
 
 # Routes
 # -----------------------------------------------------------------------------
-
 @version(1)
 @app.post("/temp")
-@app.post("/measurement")
-async def measurement(measurement: Measurement, request: Request):
+@app.post("/measurement", response_model=MeasurementResponse)
+async def measurement(
+        measurement: MeasurementRequest,
+        request: Request
+):
     """
     Create a measurement record using the following format:
 
@@ -49,7 +55,6 @@ async def measurement(measurement: Measurement, request: Request):
 
     - Example `{"data": "365951380:1640995229697:'Temperature':58.48256793121914"}`
     """
-    logger.debug("POST /measurement")
     try:
         state = sensors.util.parse_data(measurement.data)
         state = sensors.util.augment_state(state)
@@ -59,7 +64,7 @@ async def measurement(measurement: Measurement, request: Request):
         return sensors.responses.dispatch(state['measurement'])(state)
 
     except (ValueError, KeyError):
-       logger.fatal(format_exception())
+       logger.error(exception_formatter.format())
 
        sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)
 
@@ -74,7 +79,6 @@ async def get_errors():
     """
     Returns all data strings which have not been in the correct format.
     """
-    logger.debug("GET /errors")
     return sensors.commands.get_errors(db)
 
 @version(1)
@@ -83,7 +87,6 @@ async def delete_errors():
     """
     Clears the error history.
     """
-    logger.debug("DELETE /errors")
     sensors.commands.destroy_errors(db)
     return 'Errors cleared'
 
