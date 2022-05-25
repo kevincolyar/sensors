@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sensors
-          image: registry.digitalocean.com/kevincolyar/latest
+          image: registry.digitalocean.com/kevincolyar-sensors/latest
           ports:
             - containerPort: 8000
       restartPolicy: Always
