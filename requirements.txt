@@ -3,3 +3,4 @@ uvicorn==0.17.6
 numpy==1.22.4
 psycopg2==2.9.3
 python-dotenv==0.20.0
+fastapi-versioning==0.8.0

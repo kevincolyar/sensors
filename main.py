@@ -4,6 +4,7 @@ import logging
 import dotenv
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import JSONResponse
+from fastapi_versioning import VersionedFastAPI, version
 from pydantic import BaseModel
 from typing import List
 
@@ -29,6 +30,7 @@ class Measurement(BaseModel):
 # Routes
 # -----------------------------------------------------------------------------
 
+@version(1)
 @app.post("/temp")
 @app.post("/measurement")
 async def measurement(measurement: Measurement, request: Request):
@@ -66,6 +68,7 @@ async def measurement(measurement: Measurement, request: Request):
            content={'error': 'bad request'}
        )
 
+@version(1)
 @app.get("/errors", response_model=List[str])
 async def get_errors():
     """
@@ -74,6 +77,7 @@ async def get_errors():
     logger.debug("GET /errors")
     return sensors.commands.get_errors(db)
 
+@version(1)
 @app.delete("/errors")
 async def delete_errors():
     """
@@ -82,3 +86,7 @@ async def delete_errors():
     logger.debug("DELETE /errors")
     sensors.commands.destroy_errors(db)
     return 'Errors cleared'
+
+app = VersionedFastAPI(app,
+                       version_format='{major}',
+                       prefix_format='/v{major}')
