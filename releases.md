@@ -1,18 +1,17 @@
 # Releases
 
 ## v0.1.0 - Setup
-- [ ] Git
-- [ ] Python
-- [ ] Docker
-- [ ] Documentation
-- [ ] Testing
-- [ ] Logging
+- [X] Git
+- [X] Python
+- [X] Docker
+- [X] Documentation
+- [X] Testing
+- [X] Logging
 
 ## v0.2.0 - Routes
-- [ ] Routes - GET /
-- [ ] Routes - POST /temp
-- [ ] Routes - GET /errors
-- [ ] Routes - DELETE /errors
+- [X] Routes - POST /temp
+- [X] Routes - GET /errors
+- [X] Routes - DELETE /errors
 
 ## v0.3.x
 - [ ] POST temp
