@@ -2,3 +2,5 @@ private.md
 __pycache__
 *kubeconfig.yml
 .env
+.coverage
+htmlcov
