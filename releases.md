@@ -1,0 +1,70 @@
+# Releases
+
+## v0.1.0 - Setup
+- [ ] Git
+- [ ] Python
+- [ ] Docker
+- [ ] Documentation
+- [ ] Testing
+- [ ] Logging
+
+## v0.2.0 - Routes
+- [ ] Routes - GET /
+- [ ] Routes - POST /temp
+- [ ] Routes - GET /errors
+- [ ] Routes - DELETE /errors
+
+## v0.3.x
+- [ ] POST temp
+- [ ] Parse data
+- [ ] Response - {'overtemp': False}
+- [ ] Response - Error handling - Overtemp
+- [ ] Response - Error handling
+- [ ] Response - Format timestamp
+- [ ] Validation - device id - int32
+- [ ] Validation - epoch_ms - int64
+- [ ] Validation - temperature - float64
+- [ ] Validation - temperature - negative
+
+## v0.4.x
+- [ ] Testing
+- [ ] Testing - Unit tests
+- [ ] Testing - REST client
+- [ ] Testing - Bad type conversion
+
+## v0.5.x
+- [ ] Persistence - schema
+- [ ] Persistence - indices
+- [ ] Persistence - measurements
+    + t
+    + measurement/type
+    + device_id 
+    + value 
+- [ ] Persistence - errors
+    + timestamp
+    + route
+    + method
+    + payload
+    + sort by timestamp
+
+## v0.x.x - Deployment
+- [ ] Deployment - digitalocean
+- [ ] Deployment - k8
+
+## v0.6.x
+- [ ] Documentation
+https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
+- [ ] Documentation
+- [ ] Documentation - API
+  + https://fastapi.tiangolo.com/deployment/docker/#interactive-api-docs
+
+## v1.1.x - Measurement persistance
+- [ ] Tagged/Doc store?
+
+## v1.2.x - Measurement persistance
+- [ ] API versioning
+    https://christophergs.com/tutorials/ultimate-fastapi-tutorial-pt-8-project-structure-api-versioning/
+
+## v1.2.x
+- [ ] Lets Encrypt
+- [ ] Kafka
