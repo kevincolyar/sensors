@@ -6,7 +6,9 @@ The purpose of the project it to demonstrate the implementation of a sensor API.
 
 It is deployed to the following url:
 
-[](http://sensors.kevin.colyar.net/v1/)
+http://sensors.kevin.colyar.net/v1/
+
+## API Routes
 
 ### POST /temp
 
