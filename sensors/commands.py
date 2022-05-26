@@ -35,21 +35,23 @@ def save_measurement(db, data):
     """
     state = measurements.parse(data)
     state = measurements.augment(state)
+    response = responses.dispatch(state['measurement'])(state)
 
-    db.execute("CALL measurements_insert('temperature', '{}', '{}', '{}')".format(
+    db.execute("CALL measurements_insert('{}', '{}', '{}', '{}')".format(
+        state['measurement'],
         state['device_id'],
         state['value'],
         state['formatted_time']
     ))
 
-    return responses.dispatch(state['measurement'])(state)
+    return response
 
-def save_error(db, route, method, err):
+def save_error(db, route, method, err, maxlen=255):
     """
     Saves malformed API request.
     """
     db.execute("CALL errors_insert('{}', '{}', '{}')".format(
         route,
         method,
-        (err or '').replace("'", "''")[0:255] # Escape single quote and limit length to 255
+        (err or '').replace("'", "''")[0:maxlen] # Escape single quote and limit length to `maxlen`
     ))
