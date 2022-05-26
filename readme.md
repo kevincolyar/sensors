@@ -47,7 +47,7 @@ The `DELETE` request at `/errors` should clear the errors buffer.
 
 API Documentation can be viewed at the following url:
 
-    http://sensors.kevin.colyar.net/v1/docs
+http://sensors.kevin.colyar.net/v1/docs
 
 ## Releases/Roadmap
 
@@ -57,7 +57,7 @@ See `releases.md` for project progress.
 
 The local API is deployed to the following url, per `docker-compose.yml`:
 
-    open http://localhost:3001/v1/
+http://localhost:3001/v1/
 
 ## Deployment
 
