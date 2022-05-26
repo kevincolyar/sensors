@@ -54,36 +54,33 @@
     + payload
     + sort by timestamp
 
-## v0.6.x
+## v0.7.x
 - [X] Documentation
   + https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/
 - [X] Documentation - API
   + https://fastapi.tiangolo.com/deployment/docker/#interactive-api-docs
 
-## v0.x.x
+## v0.8.x
 - [X] API versioning
 
 ## v1.0.0
-- [ ] Push to github
-- [ ] Make github project public
-- [ ] Archive project
-- [ ] Email project
+- [X] Push to github
+- [X] Make github project public
+- [X] Archive project
+- [X] Email project
 
 ## v1.1.x
-- [ ] Linting
+- [X] Linting
 - [X] Coverage
 
-## v1.1.x
-- [ ] Tagged/Doc store?
-
-## v1.3.x
+## v1.2.x
 - [ ] Persistence - test/staging db
 - [ ] Persistence - indices
 - [ ] Persistence - measurements - upsert
 - [ ] Persistence - errors - save stack trace
 - [ ] Persistence - handle db re/connection issues
 
-## v1.4.x
+## v1.3.x
 - [ ] Lets Encrypt
 - [ ] Kafka
 - [ ] Authentication - JWT
