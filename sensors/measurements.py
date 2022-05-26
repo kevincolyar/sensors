@@ -5,10 +5,10 @@ import numpy as np
 def parse(data, delim=':'):
     """
     Parses data string into `state` hashmap containing the following:
-      - `__device_id__` is the device ID (int32)
-      - `__epoch_ms__` is the timestamp in EpochMS (int64)
-      - `__type__` is the measurement type (string)
-      - `__value__` is the value (float64)
+      - `device_id` is the device ID (int32)
+      - `epoch_ms` is the timestamp in EpochMS (int64)
+      - `measurement` is the measurement type (string)
+      - `value` is the value (float64)
     """
     if data is None:
         raise ValueError("data is None")
@@ -46,7 +46,7 @@ def parse(data, delim=':'):
 
 def augment(state, fmt='%Y/%m/%d %H:%M:%S'):
     """
-    Adds `formatted_time` datetime string in UTC to state hashmap.
+    Adds `formatted_time` datetime string in UTC to `state` hashmap.
     """
     ms = state['epoch_ms'] / 1000
     t = datetime.datetime.fromtimestamp(ms, tz=datetime.timezone.utc)
