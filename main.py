@@ -9,9 +9,7 @@ from pydantic import BaseModel
 from typing import List
 
 import exception_formatter
-import sensors.commands
-import sensors.responses
-import sensors.util
+import sensors.commands as commands
 
 # Initialization
 # -----------------------------------------------------------------------------
@@ -19,7 +17,7 @@ dotenv.load_dotenv()
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
-db = sensors.commands.init_db()
+db = commands.init_db()
 
 # Types
 # -----------------------------------------------------------------------------
@@ -56,17 +54,12 @@ async def measurement(
     - Example `{"data": "365951380:1640995229697:'Temperature':58.48256793121914"}`
     """
     try:
-        state = sensors.util.parse_data(measurement.data)
-        state = sensors.util.augment_state(state)
+        return commands.save_measurement(db, measurement.data)
 
-        sensors.commands.save_measurement(db, state)
-
-        return sensors.responses.dispatch(state['measurement'])(state)
-
-    except (ValueError, KeyError):
+    except (ValueError, OverflowError, KeyError):
         logger.error(exception_formatter.format())
 
-        sensors.commands.save_error(db, request.url._url, 'POST', measurement.data)
+        commands.save_error(db, request.url._url, 'POST', measurement.data)
 
         return JSONResponse(
             status_code=400,
@@ -79,7 +72,7 @@ async def get_errors():
     """
     Returns all data strings which have not been in the correct format.
     """
-    return sensors.commands.get_errors(db)
+    return commands.get_errors(db)
 
 @version(1)
 @app.delete("/errors")
@@ -87,9 +80,7 @@ async def delete_errors():
     """
     Clears the error history.
     """
-    sensors.commands.destroy_errors(db)
+    commands.destroy_errors(db)
     return 'Errors cleared'
 
-app = VersionedFastAPI(app,
-                       version_format='{major}',
-                       prefix_format='/v{major}')
+app = VersionedFastAPI(app, version_format='{major}', prefix_format='/v{major}')

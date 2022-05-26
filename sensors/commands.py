@@ -2,8 +2,13 @@
 
 import os
 import db.postgres.client
+import sensors.responses as responses
+import sensors.measurements as measurements
 
 def init_db():
+    """
+    Initializes datatabase. Assumes env vars (POSTGRES_*) in .env file.
+    """
     return db.postgres.client.Client(
         host     = os.environ.get('POSTGRES_HOST'),
         port     = os.environ.get('POSTGRES_PORT'),
@@ -13,19 +18,36 @@ def init_db():
     )
 
 def get_errors(db):
+    """
+    Returns current list of error payloads.
+    """
     return [fields[0] for fields in db.select("SELECT payload FROM errors")]
 
 def destroy_errors(db):
+    """
+    Clears all errors.
+    """
     db.execute('DELETE from errors')
 
-def save_measurement(db, state):
+def save_measurement(db, data):
+    """
+    Processes data string for measurement, saves it to the database, and responds with result.
+    """
+    state = measurements.parse(data)
+    state = measurements.augment(state)
+
     db.execute("CALL measurements_insert('temperature', '{}', '{}', '{}')".format(
         state['device_id'],
         state['value'],
         state['formatted_time']
     ))
 
+    return responses.dispatch(state['measurement'])(state)
+
 def save_error(db, route, method, err):
+    """
+    Saves malformed API request.
+    """
     db.execute("CALL errors_insert('{}', '{}', '{}')".format(
         route,
         method,

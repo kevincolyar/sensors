@@ -2,7 +2,7 @@
 import datetime
 import numpy as np
 
-def parse_data(data, delim=':'):
+def parse(data, delim=':'):
     """
     Parses data string into `state` hashmap containing the following:
       - `__device_id__` is the device ID (int32)
@@ -44,7 +44,7 @@ def parse_data(data, delim=':'):
         'value':       value
     }
 
-def augment_state(state, fmt='%Y/%m/%d %H:%M:%S'):
+def augment(state, fmt='%Y/%m/%d %H:%M:%S'):
     """
     Adds `formatted_time` datetime string in UTC to state hashmap.
     """
