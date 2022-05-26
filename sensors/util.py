@@ -25,14 +25,17 @@ def parse_data(data, delim=':'):
 
     # Use numpy to raise any type errors.
     # Don't like this; Would be easier in Rust.
-    if device_id != np.uint32(device_id):
-        raise ValueError("device_id is not uint32")
+    if device_id != np.int32(device_id):
+        raise ValueError("device_id is not int32")
 
-    if epoch_ms != np.uint64(epoch_ms):
-        raise ValueError("epoch_ms is not uint64")
+    if epoch_ms != np.int64(epoch_ms):
+        raise ValueError("epoch_ms is not int64")
 
     if value != np.float64(value):
         raise ValueError("value is not float64")
+
+    if value == float('-inf') or value == float('inf'):
+        raise ValueError("value is out of range")
 
     return {
         'device_id':   device_id,
